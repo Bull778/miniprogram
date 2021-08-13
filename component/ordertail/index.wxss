@@ -1,0 +1,44 @@
+/* component/ordertail/index.wxss */
+
+/* 订单信息 */
+.ordercode {
+  width: 710rpx;
+  background: #FFFFFF;
+  box-shadow: 1px 1px 4px 1px rgba(241, 241, 241, 0.4);
+  border-radius: 5px;
+  padding: 0rpx 20rpx;
+  box-sizing: border-box;
+  margin: 20rpx 20rpx 0 20rpx;
+  font-size: 28rpx;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+}
+
+.mdlsflexbox {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.mr-10 {
+  margin-right: 10rpx;
+}
+
+.centers {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 15rpx 0;
+}
+
+.codetext1 {
+  color: #666666;
+}
+
+.codetext2 {
+  color: #999999;
+}
+
+.icon-32 {
+  width: 32rpx;
+  height: 32rpx;
+}

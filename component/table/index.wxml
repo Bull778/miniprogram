@@ -1,0 +1,15 @@
+<!--component/table/index.wxml-->
+<view>
+    <view class="table" wx:key="index">
+      <view class="tr">
+          <view class="th th1">{{thList[0]}}</view>
+          <view class="th th2">{{thList[1]}}</view>
+          <view class="th th3">{{thList[2]}}</view>
+      </view>
+      <view class="tr" wx:for="{{tdList}}" wx:key="index">
+          <view class="td td1">{{item.name}}</view>
+          <view class="td td2">{{item.ratio}}</view>
+          <view class="td td3">{{item.way}}</view>
+      </view>
+    </view>
+ </view>

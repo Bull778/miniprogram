@@ -1,0 +1,11 @@
+<!--component/showtime/index.wxml-->
+<view class="datebox">
+  <view bindtap="onitemactive" wx:for="{{weekTime}}" wx:key="index" data-index="{{item.index}}">
+    <view class="date mt-20 {{ indexs === index ? 'activetext' : ''}}"  bindtap="onClick" data-item="{{item}}" data-indexs="{{index}}">
+      <view wx:if="{{index == 0}}">今天</view>
+      <view wx:elif="{{index == 1}}">明天</view>
+      <view wx:else>{{item.Day}}</view>
+      <view>{{item.Week}}</view>
+    </view>
+  </view>
+</view>

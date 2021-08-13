@@ -1,0 +1,13 @@
+<!--component/tabbar/index.wxml-->
+<view class='tabbar' style='padding-bottom:{{tabBarHeight}}rpx;'>
+  <view class='tabbar-item {{activeIdx === index ? "active" : ""}}'
+    wx:for='{{tabbarList}}' wx:key='pagePath' bindtap="{{bool ? 'handleItemTap' : '' }}" data-path='{{item.pagePath}}'
+    data-idx='{{index}}'>
+    <view class='tabbar-item-icon posrelative'>
+      <view wx:if="{{cartNum}}" class="noStyle"></view>
+      <image class="tabbar-item-icon-img" src='{{activeIdx === index ? item.selectedIconPath : item.iconPath}}'>
+      </image>
+    </view>
+    <view class='tabbar-item-text'>{{item.text}}</view>
+  </view>
+</view>

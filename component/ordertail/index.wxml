@@ -1,0 +1,120 @@
+<!--component/ordertail/index.wxml-->
+<!-- (0,"当面付未支付")(1, "待付款")(2, "订单超时")(3, "付款完成")(4, "待服务")(5, "技师拒绝接单")(6, "用户申请修改预约时间")(7, "服务中")(8,"美发师申请加价")(9,"用户同意加价")(10,"用户拒绝加价申请")(11, "已完成")(12, "美发师取消订单完成")(13, "用户取消订单完成")(14, "用户取消订单申请中")(15, "用户申请取消完成")(18, "已评价") -->
+<view class="ordercode">
+  <view class="mdlsflexbox">
+    <view class="centers">
+      <image class="icon-32 mr-10" src="{{imgUrl + 'ordercode2.png'}}"></image>
+      <text class="codetext1">订单编号: </text>
+    </view>
+    <view class="centers">
+      <view class="codetext2">{{order.orderno}}</view>
+    </view>
+  </view>
+  <view class="mdlsflexbox">
+    <view class="centers">
+      <image class="icon-32 mr-10" src="{{imgUrl + 'ordercode1.png'}}"></image>
+      <text class="codetext1">创建时间: </text>
+    </view>
+    <view class="centers">
+      <view class="codetext2">{{order.newcreatetime}}</view>
+    </view>
+  </view>
+  <view class="mdlsflexbox" wx:if="{{status != 5 && order.paytime}}">
+    <view class="centers">
+      <image class="icon-32 mr-10" src="{{imgUrl + 'steptime.png'}}"></image>
+      <text class="codetext1">付款时间: </text>
+    </view>
+    <view class="centers">
+      <view class="codetext2" wx:if="{{order.paytime}}">{{order.newpaytime}}</view>
+    </view>
+  </view>
+  <view wx:if="{{order.endtime}}">
+    <view class="mdlsflexbox" wx:if="{{status == 11 || status == 10 || status == 7 || status == 6}}">
+      <view class="centers">
+        <image class="icon-32 mr-10" src="{{imgUrl + 'step33.png'}}"></image>
+        <text class="codetext1">完成时间：</text>
+      </view>
+      <view class="centers">
+        <view class="codetext2" wx:if="{{order.endtime}}">{{order.newendtime}}</view>
+        <view class="codetext2" wx:elif="{{order.canceltime}}">{{order.newcanceltime}}</view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{order.servicemodel == 1}}">
+    <view class="mdlsflexbox" wx:if="{{status != 5 && order.paytype}}">
+      <view class="centers">
+        <image class="icon-32 mr-10" src="{{imgUrl + 'ordercode3.png'}}"></image>
+        <text class="codetext1">支付方式: </text>
+      </view>
+      <view class="centers">
+        <view class="codetext2" wx:if="{{order.paytype == 'weixin' || order.paytype == 'wxappletpay'}}">
+          微信支付
+        </view>
+        <view class="codetext2" wx:if="{{order.paytype == 'blance'}}">
+          余额支付
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 订单关闭时间存在 -->
+<view class="ordercode" wx:if="{{order.canceltime != null}}">
+  <view class="mdlsflexbox">
+    <view class="centers">
+      <image class="icon-32 mr-10" src="{{imgUrl + 'ordercode6.png'}}"></image>
+      <text class="codetext1">关闭时间：</text>
+    </view>
+    <view class="centers">
+      <view class="codetext2">{{order.newcanceltime}}</view>
+    </view>
+  </view>
+  <view class="mdlsflexbox" wx:if="{{order.status != 2}}">
+    <view class="centers">
+      <image class="icon-32 mr-10" src="{{imgUrl + 'ordercode1.png'}}"></image>
+      <text class="codetext1">退款时间：</text>
+    </view>
+    <view class="centers">
+      <view class="codetext2">{{order.newrefundtime}}</view>
+    </view>
+  </view>
+  <view class="mdlsflexbox" wx:if="{{order.status != 2}}">
+    <view class="centers">
+      <image class="icon-32 mr-10" src="{{imgUrl + 'ordermoney.png'}}"></image>
+      <text class="codetext1">订单金额：</text>
+    </view>
+    <view class="centers">
+      <view class="codetext2">¥{{order.orderamount}}</view>
+    </view>
+  </view>
+  <view class="mdlsflexbox" wx:if="{{(order.status == 5 || order.status == 12) || order.status == 13}}">
+    <view class="centers">
+      <image class="icon-32 mr-10" src="{{imgUrl + 'ordercode4.png'}}"></image>
+      <text class="codetext1">违约金额：</text>
+    </view>
+    <view class="centers">
+      <view class="codetext2" wx:if="{{order.status == 5 || order.status == 12}}">¥{{order.breakCcontractAmount ?
+        order.breakCcontractAmount : '0.00'}}</view>
+      <view class="codetext2" wx:if="{{order.status == 13}}">¥{{order.handlingfee ? order.handlingfee : '0.00'}}</view>
+    </view>
+  </view>
+  <view class="mdlsflexbox" wx:if="{{order.status != 2}}">
+    <view class="centers">
+      <image class="icon-32 mr-10" src="{{imgUrl + 'ordercode5.png'}}"></image>
+      <text class="codetext1">退款金额：</text>
+    </view>
+    <view class="centers">
+      <view class="codetext2">¥{{order.orderRefund.refundamount ? order.orderRefund.refundamount : '0.00'}}</view>
+    </view>
+  </view>
+</view>
+<view class="ordercode" wx:if="{{status == 10 && order.paytime != null || order.refundReason}}">
+  <view class="mdlsflexbox">
+    <view class="centers">
+      <image class="icon-32 mr-10" src="{{imgUrl + 'leave.png'}}"></image>
+      <text class="codetext1">关闭原因：</text>
+    </view>
+    <view class="centers">
+      <view class="codetext2">{{order.refundReason || order.orderRefund.handlingfee}}</view>
+    </view>
+  </view>
+</view>

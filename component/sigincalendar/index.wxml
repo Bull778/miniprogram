@@ -1,0 +1,14 @@
+<!--component/sigincalendar/index.wxml-->
+<view class='wrap'>
+	<view class='header'>
+		<view wx:for='{{date}}' class='' wx:key="index">{{item}}<view></view></view>
+	</view>
+	<view class='date-box'>
+		<view wx:for='{{dateArr}}' class='{{isToday == item.isToday ? "nowDay" : ""}}' data-date='{{item.isToday}}' wx:key="index">			
+			<view class='date-head'>
+				<view>{{item.dateNum}}</view>
+			</view>
+			<view class='date-weight'>{{item.weight}}</view>
+		</view>
+	</view>
+</view>

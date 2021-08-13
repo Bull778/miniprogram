@@ -1,0 +1,32 @@
+/* component/showtime/index.wxss */
+/* 时间 */
+.datebox {
+  border-bottom: 1px solid #D2D2D2;
+  display: flex;
+  overflow-x: auto;
+  margin: 0 10rpx;
+}
+
+/* 取消滚动条 */
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  color: transparent
+}
+
+.date {
+  width: 110rpx;
+  height: 74rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 20rpx;
+  display: inline-table;
+  padding: 10rpx 0;
+}
+
+.activetext {
+  color: #FF8722;
+}
